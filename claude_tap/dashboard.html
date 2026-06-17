@@ -2050,6 +2050,7 @@ function openSession(sessionId) {
 
 function showListView() {
   state.view = "list";
+  state.selectedSessionId = null;
   state.detailSessionId = null;
   state.detailRecordsLoaded = 0;
   state.detailRecordTotal = 0;
@@ -2059,6 +2060,9 @@ function showListView() {
   $("#list-view").classList.remove("hidden");
   $("#detail-view").classList.add("hidden");
   updateTracePathBar();
+  if (window.location.pathname.match(SESSION_DETAIL_ROUTE)) {
+    history.replaceState(null, "", "/dashboard");
+  }
 }
 
 function showDetailView() {
